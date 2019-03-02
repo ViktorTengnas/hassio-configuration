@@ -19,6 +19,8 @@ default_config:
 # Show the introduction message on startup.
 introduction:
 
+discovery:
+
 # Sensors
 sensor:
   # Weather prediction
