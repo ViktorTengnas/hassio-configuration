@@ -45,7 +45,7 @@ panel_iframe:
   configurator:
     title: Configurator
     icon: mdi:wrench
-    url: !secret base_url_secret
+    url: !secret configuratior_url_secret
 
 group: !include groups.yaml
 automation: !include automations.yaml
