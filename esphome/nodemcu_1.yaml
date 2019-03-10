@@ -1,0 +1,25 @@
+esphome:
+  name: nodemcu_1
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid_secret
+  password: !secret ssid_pass_secret
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+dallas:
+  - pin: GPIO2
+    update_interval: 15s
+
+sensor:
+  - platform: dallas
+    address: 0xB8000009FF051D28
+    name: "Fermentation Temperature"

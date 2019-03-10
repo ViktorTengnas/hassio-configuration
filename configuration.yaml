@@ -47,6 +47,17 @@ panel_iframe:
     icon: mdi:wrench
     url: !secret configuratior_url_secret
 
+climate:
+  - platform: generic_thermostat
+    name: Fermentation Thermostat
+    heater: switch.light_3
+    target_sensor: sensor.fermentation_temperature
+    min_temp: 15
+    max_temp: 45
+    target_temp: 30
+    cold_tolerance: 2
+    hot_tolerance: 2
+
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
