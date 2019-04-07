@@ -26,6 +26,11 @@ sensor:
   # Weather prediction
   - platform: yr
 
+weather:
+  - platform: darksky
+    api_key: !secret dark_sky_api_key_secret
+    mode: daily
+
 # Text to speech
 tts:
   - platform: google
