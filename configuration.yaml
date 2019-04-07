@@ -52,10 +52,10 @@ climate:
     name: Fermentation Thermostat
     heater: switch.light_3
     target_sensor: sensor.fermentation_temperature
-    min_temp: 15
-    max_temp: 45
-    target_temp: 30
-    cold_tolerance: 2
+    min_temp: 25
+    max_temp: 65
+    target_temp: 61
+    cold_tolerance: 0.3
     hot_tolerance: 2
 
 group: !include groups.yaml
