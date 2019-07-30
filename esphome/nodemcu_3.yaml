@@ -1,0 +1,36 @@
+esphome:
+  name: nodemcu_3
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid_secret
+  password: !secret ssid_pass_secret
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+dallas:
+  - pin: D2
+    update_interval: 60s
+
+sensor:
+  # - platform: dht
+  #   model: DHT22
+  #   pin: D1
+  #   temperature:
+  #     name: "Kitchen Temperature"
+  #   humidity:
+  #     name: "Kitchen Humidity"
+  #   update_interval: 60s
+  - platform: dallas
+    address: 0x5C00000B53F42428
+    name: "Kitchen Fridge Temperature"
+  - platform: dallas
+    address: 0x9F00000B54232928
+    name: "Kitchen Freezer Temperature"
