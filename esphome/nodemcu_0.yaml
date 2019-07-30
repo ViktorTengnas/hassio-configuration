@@ -1,0 +1,26 @@
+esphome:
+  name: nodemcu_0
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid_secret
+  password: !secret ssid_pass_secret
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+sensor:
+  - platform: dht
+    model: DHT22
+    pin: D2
+    temperature:
+      name: "Bedroom Temperature"
+    humidity:
+      name: "Bedroom Humidity"
+    update_interval: 60s
