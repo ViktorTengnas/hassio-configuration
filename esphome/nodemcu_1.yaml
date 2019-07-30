@@ -17,9 +17,17 @@ ota:
 
 dallas:
   - pin: GPIO2
-    update_interval: 15s
+    update_interval: 30s
 
 sensor:
+  - platform: dht
+    model: DHT22
+    pin: D1
+    temperature:
+      name: "Kitchen Temperature"
+    humidity:
+      name: "Kitchen Humidity"
+    update_interval: 60s
   - platform: dallas
     address: 0xB8000009FF051D28
     name: "Fermentation Temperature"
