@@ -16,15 +16,37 @@ homeassistant:
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
-# Show the introduction message on startup.
-introduction:
-
 discovery:
 
 # Sensors
 sensor:
+- platform: darksky
+    api_key: !secret dark_sky_api_key_secret
+    name: "Outside"
+    scan_interval:
+      days: 0
+      hours: 0
+      minutes: 3
+      seconds: 0
+      milliseconds: 0
+    monitored_conditions:
+      - temperature
+      - humidity
   # Weather prediction
   - platform: yr
+  - platform: trafikverket_train
+    api_key: !secret trafikverket_api_key_secret
+    trains:
+    - name: "Train to work"
+      from: "Falkenberg"
+      to: "Göteborg C"
+      time: "07:09"
+      weekday: [mon]
+    - name: "Train from work"
+      from: "Göteborg C"
+      to: "Falkenberg"
+      time: "16:25"
+      weekday: [fri]
 
 weather:
   - platform: darksky
@@ -33,7 +55,8 @@ weather:
 
 # Text to speech
 tts:
-  - platform: google
+  - platform: google_translate
+    service_name: google_say
   
 ios:
 
@@ -51,17 +74,6 @@ panel_iframe:
     title: Configurator
     icon: mdi:wrench
     url: !secret configurator_url_secret
-
-climate:
-  - platform: generic_thermostat
-    name: Fermentation Thermostat
-    heater: switch.light_3
-    target_sensor: sensor.fermentation_temperature
-    min_temp: 25
-    max_temp: 65
-    target_temp: 61
-    cold_tolerance: 0.3
-    hot_tolerance: 2
 
 group: !include groups.yaml
 automation: !include automations.yaml
