@@ -20,7 +20,7 @@ discovery:
 
 # Sensors
 sensor:
-- platform: darksky
+  - platform: darksky
     api_key: !secret dark_sky_api_key_secret
     name: "Outside"
     scan_interval:
@@ -59,6 +59,12 @@ tts:
     service_name: google_say
   
 ios:
+
+hacs:
+    token: !secret github_hacs_secret
+
+lovelace:
+    mode: yaml
 
 homekit:
   auto_start: false

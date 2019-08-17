@@ -1,0 +1,79 @@
+title: Home
+
+resources:
+  - type: module
+    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+
+views:
+  - badges:
+      - sensor.yr_symbol
+      - sun.sun
+      - device_tracker.stina_iphone
+      - device_tracker.viktors_iphone
+      - sensor.fermentation_temperature
+    cards:
+      - columns: 3
+        entities:
+          - entity: switch.light_1
+          - entity: switch.light_2
+          - entity: switch.light_3
+        show_icon: true
+        show_name: true
+        show_state: true
+        title: Switches
+        type: glance
+      - entities:
+          - entity: person.viktor
+          - entity: person.stina
+        show_header_toggle: false
+        title: Persons
+        type: entities
+      - entity: weather.dark_sky
+        type: weather-forecast
+      - type: custom:mini-media-player
+        entity: media_player.living_room
+        hide:
+          power: true
+          icon: true
+        speaker_group:
+          platform: sonos
+          show_group_count: true
+          entities:
+            - entity_id: media_player.living_room
+              name: Sonos Living Room
+            - entity_id: media_player.kitchen
+              name: Sonos Kitchen
+      - entities:
+          - sensor.kitchen_temperature_3
+          - sensor.bedroom_temperature
+          - sensor.outside_temperature
+        hours_to_show: 24
+        title: Temperature
+        type: history-graph
+      - entities:
+          - sensor.kitchen_humidity_3
+          - sensor.bedroom_humidity
+          - sensor.outside_humidity
+        hours_to_show: 24
+        title: Humidity
+        type: history-graph
+    path: default_view
+    title: Home
+  - badges: []
+    cards:
+      - entities:
+          - sensor.fermentation_temperature
+        hours_to_show: 24
+        title: Fermentation Temperature
+        type: history-graph
+      - entities:
+          - sensor.kitchen_fridge_temperature_2
+        hours_to_show: 24
+        title: Fridge Temperature
+        type: history-graph
+      - entities:
+          - sensor.kitchen_freezer_temperature_2
+        hours_to_show: 24
+        title: Freezer Temperature
+        type: history-graph
+    title: Monitoring
