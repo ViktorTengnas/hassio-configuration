@@ -1,0 +1,28 @@
+esphome:
+  name: nodemcu_2
+  platform: ESP8266
+  board: nodemcuv2
+
+wifi:
+  ssid: !secret ssid_secret
+  password: !secret ssid_pass_secret
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+dallas:
+  - pin: D1
+    update_interval: 60s
+
+# sensor:
+#   - platform: dallas
+#     address: 0xD200000B5465D428
+#     name: "Basement Fridge Temperature"
+#   - platform: dallas
+#     address: 0x7800000B55E46B28
+#     name: "Basement Freezer Temperature"

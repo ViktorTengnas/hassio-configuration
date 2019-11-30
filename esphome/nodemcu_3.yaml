@@ -20,14 +20,14 @@ dallas:
     update_interval: 60s
 
 sensor:
-  # - platform: dht
-  #   model: DHT22
-  #   pin: D1
-  #   temperature:
-  #     name: "Kitchen Temperature"
-  #   humidity:
-  #     name: "Kitchen Humidity"
-  #   update_interval: 60s
+  - platform: dht
+    model: DHT22
+    pin: D5
+    temperature:
+      name: "Kitchen Temperature"
+    humidity:
+      name: "Kitchen Humidity"
+    update_interval: 60s
   - platform: dallas
     address: 0x5C00000B53F42428
     name: "Kitchen Fridge Temperature"

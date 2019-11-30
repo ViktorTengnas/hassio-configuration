@@ -24,9 +24,9 @@ sensor:
     model: DHT22
     pin: D1
     temperature:
-      name: "Kitchen Temperature"
+      name: "Drying Room Temperature"
     humidity:
-      name: "Kitchen Humidity"
+      name: "Drying Room Humidity"
     update_interval: 60s
   - platform: dallas
     address: 0xB8000009FF051D28
