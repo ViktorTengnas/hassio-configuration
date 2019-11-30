@@ -10,6 +10,7 @@
 !esphome
 !node-red
 !flows.json
+!custom_components/
 
 # Ignore folders.
 .storage
