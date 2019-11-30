@@ -6,3 +6,76 @@
   action:
     - delay: 00:02
     - service: homekit.start
+
+- id: 'train_to_work_0709_notification'
+  alias: "Train to work 0709 notification"
+  trigger:
+    platform: state
+    entity_id: sensor.train_to_work_0709
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{{ state_attr('sensor.train_to_work_0709', 'departure_state') == 'delayed' }}"
+      - condition: template
+        value_template: "{{ state_attr('sensor.train_to_work_0709', 'departure_state') == 'canceled' }}"
+  action:
+    service: script.turn_on
+    entity_id: script.notify_train_status
+    data:
+      variables:
+        train_entity_id: 'train_to_work_0709'
+
+- id: 'train_from_work_1625_notification'
+  alias: "Train from work 1625 notification"
+  trigger:
+    platform: state
+    entity_id: sensor.train_from_work_1625
+  condition:
+  - condition: and
+    conditions:
+    - condition: time
+      weekday:
+        - mon
+        - tue
+        - wed
+        - thu
+        - fri
+    - condition: or
+      conditions:
+      - condition: template
+        value_template: "{{ state_attr('sensor.train_from_work_1625', 'departure_state') == 'delayed' }}"
+      - condition: template
+        value_template: "{{ state_attr('sensor.train_from_work_1625', 'departure_state') == 'canceled' }}"
+  action:
+    service: script.turn_on
+    entity_id: script.notify_train_status
+    data:
+      variables:
+        train_entity_id: 'train_from_work_1625'
+        
+# Beerbolaget release notification
+- alias: Beerbolaget Release
+  initial_state: on
+  trigger:
+    platform: state
+    entity_id: sensor.beerbolaget
+    from: 'False'
+    to: 'True'
+  action:
+    service: notify.ios_viktors_iphone
+    data:
+      title: "Beerbolaget"
+      message: "Nya Små partier: {{ states.sensor.beerbolaget.attributes.release_date }}"
+      data:
+        push:
+          badge: 0

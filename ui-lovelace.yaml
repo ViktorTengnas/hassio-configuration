@@ -1,22 +1,30 @@
 title: Home
 
 resources:
-  - type: module
-    url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+  - url: /community_plugin/mini-media-player/mini-media-player-bundle.js
+    type: module
+  - url: /community_plugin/beerbolaget-card/beerbolaget-card.js
+    type: js
 
 views:
   - badges:
       - sensor.yr_symbol
       - sun.sun
-      - device_tracker.stina_iphone
-      - device_tracker.viktors_iphone
+      - device_tracker.stinas_iphone
+      - device_tracker.viktors_iphone_2
       - sensor.fermentation_temperature
     cards:
       - columns: 3
         entities:
-          - entity: switch.light_1
-          - entity: switch.light_2
-          - entity: switch.light_3
+          - entity: switch.lounge_plug
+          - entity: switch.living_room_plug
+          - entity: switch.kitchen_plug
+          - entity: light.kitchen_table_bulb
+          - entity: light.kitchen_countertop_bulb
+          - entity: light.lounge_bulb
+          - entity: light.living_room_bulb
+          - entity: light.bedroom_bed_bulb
+          - entity: light.bedroom_drawer_bulb
         show_icon: true
         show_name: true
         show_state: true
@@ -44,19 +52,26 @@ views:
             - entity_id: media_player.kitchen
               name: Sonos Kitchen
       - entities:
-          - sensor.kitchen_temperature_3
+          - sensor.drying_room_temperature
           - sensor.bedroom_temperature
           - sensor.outside_temperature
+          - sensor.kitchen_temperature
         hours_to_show: 24
         title: Temperature
         type: history-graph
       - entities:
-          - sensor.kitchen_humidity_3
+          - sensor.drying_room_humidity
           - sensor.bedroom_humidity
           - sensor.outside_humidity
+          - sensor.kitchen_humidity
         hours_to_show: 24
         title: Humidity
         type: history-graph
+      - type: custom:beerbolaget-card
+        entity: sensor.beerbolaget
+        rating: true
+        user_ratings: true
+        filter_local: true
     path: default_view
     title: Home
   - badges: []
@@ -68,11 +83,13 @@ views:
         type: history-graph
       - entities:
           - sensor.kitchen_fridge_temperature_2
+          - sensor.basement_fridge_temperature
         hours_to_show: 24
         title: Fridge Temperature
         type: history-graph
       - entities:
           - sensor.kitchen_freezer_temperature_2
+          - sensor.basement_freezer_temperature
         hours_to_show: 24
         title: Freezer Temperature
         type: history-graph

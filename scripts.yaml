@@ -1,0 +1,40 @@
+notify_train_status:
+  alias: Notify train status
+  sequence:
+    - service: notify.mobile_app_viktors_iphone
+      data_template:
+        title: "{{ states.sensor[train_entity_id].attributes.friendly_name }}"
+        message: >
+          {{ states.sensor[train_entity_id].attributes.friendly_name }} är {{ '' }}
+          {%- if state_attr('sensor.train_to_work_0709', 'departure_state') == 'delayed' -%}
+            försenat med {{ '' }}
+            {{- states.sensor[train_entity_id].attributes.number_of_minutes_delayed|int -}}
+              {{ '' }} minuter
+          {%- elif state_attr('sensor.train_to_work_0709', 'departure_state') == 'canceled' -%}
+            inställt
+          {%- else -%}
+            i tid
+          {%- endif -%}
+          {%- if states.sensor[train_entity_id].attributes.other_information -%}
+            , övrig information: {{ states.sensor[train_entity_id].attributes.other_information -}}
+          {%- endif -%}
+          {%- if states.sensor[train_entity_id].attributes.deviations -%}
+            , avvikelser: {{ states.sensor[train_entity_id].attributes.deviations -}}
+          {%- endif -%}
+          .
+        data:
+          icon: "https://materialdesignicons.com/api/download/B6E1232A-3A43-4200-BE34-1BC436B34BF1/FFFFFF/1/FFFFFF/0/128"
+sonos_group_all:
+    alias: "Group all Sonos"
+    sequence:
+     - service: sonos.join
+       data_template:
+         master: >
+           {%- if is_state('media_player.kitchen','playing') -%}
+             media_player.kitchen
+           {%- else -%}
+             media_player.living_room
+           {%- endif -%}
+       entity_id:
+         - media_player.kitchen
+         - media_player.living_room

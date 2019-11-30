@@ -37,16 +37,16 @@ sensor:
   - platform: trafikverket_train
     api_key: !secret trafikverket_api_key_secret
     trains:
-    - name: "Train to work"
+    - name: "Train to work 0709"
       from: "Falkenberg"
       to: "Göteborg C"
       time: "07:09"
-      weekday: [mon]
-    - name: "Train from work"
+      weekday: [mon, tue, wed, thu, fri]
+    - name: "Train from work 1625"
       from: "Göteborg C"
       to: "Falkenberg"
       time: "16:25"
-      weekday: [fri]
+      weekday: [mon, tue, wed, thu, fri]
 
 weather:
   - platform: darksky
@@ -60,11 +60,35 @@ tts:
   
 ios:
 
+cloud:
+
 hacs:
     token: !secret github_hacs_secret
+    
+beerbolaget:
+  api_key: !secret systembolaget_secret
+  image_url: "https://www.systembolaget.se/api/productsearch/search/sok-dryck"
+  store: "Sandgatan"
 
 lovelace:
     mode: yaml
+
+google_assistant:
+  project_id: !secret google_assistant_project_id_secret
+  api_key: !secret google_assistant_api_key_secret
+  exposed_domains:
+    - input_boolean
+    - scene
+    - script
+    - switch
+    - fan
+    - light
+    - lock
+    - cover
+    - media_player
+    - climate
+    - vacuum
+    - sensor
 
 homekit:
   auto_start: false
