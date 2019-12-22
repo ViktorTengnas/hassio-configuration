@@ -1,0 +1,17 @@
+- platform: group
+  name: Kitchen Lights
+  entities:
+    - light.kitchen_countertop_bulb
+    - light.kitchen_table_bulb
+- platform: group
+  name: Ground Floor Lights
+  entities:
+    - light.kitchen_countertop_bulb
+    - light.kitchen_table_bulb
+    - light.living_room_bulb
+    - light.lounge_bulb
+- platform: group
+  name: Bedroom Lights
+  entities:
+    - light.bedroom_drawer_bulb
+    - light.bedroom_bed_bulb

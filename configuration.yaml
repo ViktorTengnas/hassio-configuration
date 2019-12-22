@@ -61,9 +61,6 @@ tts:
 ios:
 
 cloud:
-
-hacs:
-    token: !secret github_hacs_secret
     
 beerbolaget:
   api_key: !secret systembolaget_secret
@@ -94,7 +91,6 @@ homekit:
   auto_start: false
 
 http:
-  api_password: !secret http_password
   base_url: !secret base_url_secret
   ssl_certificate: /ssl/fullchain.pem
   ssl_key: /ssl/privkey.pem
@@ -108,3 +104,5 @@ panel_iframe:
 group: !include groups.yaml
 automation: !include automations.yaml
 script: !include scripts.yaml
+light: !include lights.yaml
+scene: !include scenes.yaml

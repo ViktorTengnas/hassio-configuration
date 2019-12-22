@@ -1,0 +1,62 @@
+- name: Bed Time
+  entities:
+    light.bedroom_lights:
+      state: on
+      brightness: 10
+    light.kitchen_countertop_bulb:
+      state: on
+      brightness: 30
+    light.living_room_bulb: off
+    light.lounge_bulb: off
+    light.kitchen_table_bulb: off
+    light.living_room: off
+    switch.living_room_plug: off
+    switch.lounge_plug: off
+    media_player.viera_gt60_series: off
+    media_player.kitchen: off
+    media_player.living_room: off
+
+- name: Good Night
+  entities:
+    light.bedroom_lights: off
+    light.kitchen_countertop_bulb:
+      state: on
+      brightness: 30
+    light.living_room_bulb: off
+    light.lounge_bulb: off
+    light.kitchen_table_bulb: off
+    light.living_room: off
+    switch.living_room_plug: off
+    switch.lounge_plug: off
+    media_player.viera_gt60_series: off
+    media_player.kitchen: off
+    media_player.living_room: off
+
+- name: Daylight
+  entities:
+    group.all_lights: off
+    switch.living_room_plug: off
+    switch.lounge_plug: off
+
+- name: Nighttime
+  entities:
+    light.bedroom_lights:
+      state: on
+      brightness: 10
+    light.kitchen_countertop_bulb:
+      state: on
+      brightness: 30
+    light.living_room_bulb:
+      state: on
+      brightness: 30
+    light.lounge_bulb: off
+    light.kitchen_table_bulb: off
+    light.living_room: off
+    switch.living_room_plug: off
+    switch.lounge_plug: off
+
+- name: Movie Time
+  entities:
+    light.living_toom_bulb: off
+    switch.living_toom_plug: off
+    media_player.viera_gt60_series: on
