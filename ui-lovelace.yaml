@@ -5,6 +5,12 @@ resources:
     type: module
   - url: /community_plugin/beerbolaget-card/beerbolaget-card.js
     type: js
+  - url: /community_plugin/lovelace-fold-entity-row/fold-entity-row.js
+    type: module
+  - url: /community_plugin/lovelace-slider-entity-row/slider-entity-row.js
+    type: module
+  - url: /community_plugin/lovelace-layout-card/layout-card.js
+    type: module
 
 views:
   - badges:
@@ -14,22 +20,53 @@ views:
       - device_tracker.viktors_iphone_2
       - sensor.fermentation_temperature
     cards:
-      - columns: 3
+      - columns: 1
         entities:
-          - entity: switch.lounge_plug
-          - entity: switch.living_room_plug
-          - entity: switch.kitchen_plug
-          - entity: light.kitchen_table_bulb
-          - entity: light.kitchen_countertop_bulb
-          - entity: light.lounge_bulb
-          - entity: light.living_room_bulb
-          - entity: light.bedroom_bed_bulb
-          - entity: light.bedroom_drawer_bulb
-        show_icon: true
+          - type: custom:fold-entity-row
+            head:
+              type: custom:slider-entity-row
+              entity: light.ground_floor_lights
+              hide_state: true
+            open: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.kitchen_table_bulb
+                hide_state: true
+              - type: custom:slider-entity-row
+                entity: light.kitchen_countertop_bulb
+                hide_state: true
+              - type: custom:slider-entity-row
+                entity: light.lounge_bulb
+                hide_state: true
+              - type: custom:slider-entity-row
+                entity: light.living_room_bulb
+                hide_state: true
+          - type: custom:fold-entity-row
+            head:
+              type: custom:slider-entity-row
+              entity: light.bedroom_lights
+              hide_state: true
+            open: true
+            entities:
+              - type: custom:slider-entity-row
+                entity: light.bedroom_bed_bulb
+                hide_state: true
+              - type: custom:slider-entity-row
+                entity: light.bedroom_drawer_bulb
+                hide_state: true
+          - type: custom:fold-entity-row
+            head:
+              group.all_switches
+            open: true
+            entities:
+              - switch.lounge_plug
+              - switch.living_room_plug
+              - switch.kitchen_plug
+        show_icon: false
         show_name: true
-        show_state: true
-        title: Switches
-        type: glance
+        show_state: false
+        title: Lights & Switches
+        type: entities
       - entities:
           - entity: person.viktor
           - entity: person.stina
