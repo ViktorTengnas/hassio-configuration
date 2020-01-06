@@ -22,7 +22,7 @@ discovery:
 sensor:
   - platform: darksky
     api_key: !secret dark_sky_api_key_secret
-    name: "Outside"
+    name: "Outdoor"
     scan_interval:
       days: 0
       hours: 0
@@ -37,16 +37,21 @@ sensor:
   - platform: trafikverket_train
     api_key: !secret trafikverket_api_key_secret
     trains:
-    - name: "Train to work 0709"
+    - name: "Train to work 0726"
       from: "Falkenberg"
       to: "Göteborg C"
-      time: "07:09"
+      time: "07:26"
       weekday: [mon, tue, wed, thu, fri]
-    - name: "Train from work 1625"
+    - name: "Train from work 1640"
       from: "Göteborg C"
       to: "Falkenberg"
-      time: "16:25"
+      time: "16:40"
       weekday: [mon, tue, wed, thu, fri]
+  - platform: systemmonitor
+    resources:
+      - type: disk_use_percent
+        arg: /home
+      - type: memory_free
 
 weather:
   - platform: darksky
@@ -96,10 +101,10 @@ http:
   ssl_key: /ssl/privkey.pem
 
 panel_iframe:
-  configurator:
-    title: Configurator
-    icon: mdi:wrench
-    url: !secret configurator_url_secret
+  ide:
+    title: IDE
+    icon: mdi:code-braces
+    url: !secret ide_url_secret
 
 group: !include groups.yaml
 automation: !include automations.yaml

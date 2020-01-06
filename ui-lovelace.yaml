@@ -17,98 +17,101 @@ views:
       - sensor.yr_symbol
       - sun.sun
       - device_tracker.stinas_iphone
-      - device_tracker.viktors_iphone_2
+      - device_tracker.viktors_iphone
       - sensor.fermentation_temperature
     cards:
-      - columns: 1
-        entities:
-          - type: custom:fold-entity-row
-            head:
-              type: custom:slider-entity-row
-              entity: light.ground_floor_lights
-              hide_state: true
-            open: true
+      - type: custom:layout-card
+        layout: vertical
+        cards:
+          - entities:
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.ground_floor_lights
+                  hide_state: true
+                open: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.kitchen_table_bulb
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.kitchen_countertop_bulb
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.lounge_bulb
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.living_room_bulb
+                    hide_state: true
+              - type: custom:fold-entity-row
+                head:
+                  type: custom:slider-entity-row
+                  entity: light.bedroom_lights
+                  hide_state: true
+                open: true
+                entities:
+                  - type: custom:slider-entity-row
+                    entity: light.bedroom_bed_bulb
+                    hide_state: true
+                  - type: custom:slider-entity-row
+                    entity: light.bedroom_drawer_bulb
+                    hide_state: true
+              - type: custom:fold-entity-row
+                head:
+                  group.all_switches
+                open: true
+                entities:
+                  - switch.lounge_plug
+                  - switch.living_room_plug
+                  - switch.kitchen_plug
+            show_icon: false
+            show_name: true
+            show_state: false
+            title: Lights & Switches
+            type: entities
+            show_header_toggle: false
+          - type: entities
             entities:
-              - type: custom:slider-entity-row
-                entity: light.kitchen_table_bulb
-                hide_state: true
-              - type: custom:slider-entity-row
-                entity: light.kitchen_countertop_bulb
-                hide_state: true
-              - type: custom:slider-entity-row
-                entity: light.lounge_bulb
-                hide_state: true
-              - type: custom:slider-entity-row
-                entity: light.living_room_bulb
-                hide_state: true
-          - type: custom:fold-entity-row
-            head:
-              type: custom:slider-entity-row
-              entity: light.bedroom_lights
-              hide_state: true
-            open: true
+              - entity: person.viktor
+              - entity: person.stina
+            show_header_toggle: false
+            title: Persons
+          - type: weather-forecast
+            entity: weather.dark_sky
+          - type: custom:mini-media-player
+            entity: media_player.living_room
+            hide:
+              power: true
+              icon: true
+            speaker_group:
+              platform: sonos
+              show_group_count: true
+              entities:
+                - entity_id: media_player.living_room
+                  name: Sonos Living Room
+                - entity_id: media_player.kitchen
+                  name: Sonos Kitchen
+          - type: history-graph
             entities:
-              - type: custom:slider-entity-row
-                entity: light.bedroom_bed_bulb
-                hide_state: true
-              - type: custom:slider-entity-row
-                entity: light.bedroom_drawer_bulb
-                hide_state: true
-          - type: custom:fold-entity-row
-            head:
-              group.all_switches
-            open: true
+              - sensor.drying_room_temperature
+              - sensor.bedroom_temperature
+              - sensor.outdoor_temperature
+              - sensor.kitchen_temperature
+            hours_to_show: 24
+            title: Temperature
+          - type: history-graph
             entities:
-              - switch.lounge_plug
-              - switch.living_room_plug
-              - switch.kitchen_plug
-        show_icon: false
-        show_name: true
-        show_state: false
-        title: Lights & Switches
-        type: entities
-      - entities:
-          - entity: person.viktor
-          - entity: person.stina
-        show_header_toggle: false
-        title: Persons
-        type: entities
-      - entity: weather.dark_sky
-        type: weather-forecast
-      - type: custom:mini-media-player
-        entity: media_player.living_room
-        hide:
-          power: true
-          icon: true
-        speaker_group:
-          platform: sonos
-          show_group_count: true
-          entities:
-            - entity_id: media_player.living_room
-              name: Sonos Living Room
-            - entity_id: media_player.kitchen
-              name: Sonos Kitchen
-      - entities:
-          - sensor.drying_room_temperature
-          - sensor.bedroom_temperature
-          - sensor.outside_temperature
-          - sensor.kitchen_temperature
-        hours_to_show: 24
-        title: Temperature
-        type: history-graph
-      - entities:
-          - sensor.drying_room_humidity
-          - sensor.bedroom_humidity
-          - sensor.outside_humidity
-          - sensor.kitchen_humidity
-        hours_to_show: 24
-        title: Humidity
-        type: history-graph
-      - type: custom:beerbolaget-card
-        entity: sensor.beerbolaget
-        rating: true
-        user_ratings: true
-        filter_local: true
+              - sensor.drying_room_humidity
+              - sensor.bedroom_humidity
+              - sensor.outdoor_humidity
+              - sensor.kitchen_humidity
+            hours_to_show: 24
+            title: Humidity
+          - type: custom:beerbolaget-card
+            entity: sensor.beerbolaget
+            rating: true
+            user_ratings: true
+            filter_local: true
     path: default_view
     title: Home
   - badges: []

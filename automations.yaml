@@ -7,11 +7,11 @@
     - delay: 00:02
     - service: homekit.start
 
-- id: 'train_to_work_0709_notification'
-  alias: "Train to work 0709 notification"
+- id: 'train_to_work_0726_notification'
+  alias: "Train to work 0726 notification"
   trigger:
     platform: state
-    entity_id: sensor.train_to_work_0709
+    entity_id: sensor.train_to_work_0726
   condition:
   - condition: and
     conditions:
@@ -25,21 +25,21 @@
     - condition: or
       conditions:
       - condition: template
-        value_template: "{{ state_attr('sensor.train_to_work_0709', 'departure_state') == 'delayed' }}"
+        value_template: "{{ state_attr('sensor.train_to_work_0726', 'departure_state') == 'delayed' }}"
       - condition: template
-        value_template: "{{ state_attr('sensor.train_to_work_0709', 'departure_state') == 'canceled' }}"
+        value_template: "{{ state_attr('sensor.train_to_work_0726', 'departure_state') == 'canceled' }}"
   action:
     service: script.turn_on
     entity_id: script.notify_train_status
     data:
       variables:
-        train_entity_id: 'train_to_work_0709'
+        train_entity_id: 'train_to_work_0726'
 
-- id: 'train_from_work_1625_notification'
-  alias: "Train from work 1625 notification"
+- id: 'train_from_work_1640_notification'
+  alias: "Train from work 1640 notification"
   trigger:
     platform: state
-    entity_id: sensor.train_from_work_1625
+    entity_id: sensor.train_from_work_1640
   condition:
   - condition: and
     conditions:
@@ -53,15 +53,15 @@
     - condition: or
       conditions:
       - condition: template
-        value_template: "{{ state_attr('sensor.train_from_work_1625', 'departure_state') == 'delayed' }}"
+        value_template: "{{ state_attr('sensor.train_from_work_1640', 'departure_state') == 'delayed' }}"
       - condition: template
-        value_template: "{{ state_attr('sensor.train_from_work_1625', 'departure_state') == 'canceled' }}"
+        value_template: "{{ state_attr('sensor.train_from_work_1640', 'departure_state') == 'canceled' }}"
   action:
     service: script.turn_on
     entity_id: script.notify_train_status
     data:
       variables:
-        train_entity_id: 'train_from_work_1625'
+        train_entity_id: 'train_from_work_1640'
         
 # Beerbolaget release notification
 - alias: Beerbolaget Release
